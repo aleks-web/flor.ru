@@ -64,4 +64,11 @@ services:
     ports:
         - "80:80"
         - "443:443"
-    depends_on: ["pgadmin", "keycloak"]
+    depends_on: ["pgadmin", "keycloak", "testapp"]
+
+  testapp:
+    container_name: testapp
+    build: ./apps/test
+    expose:
+      - 3000
+    depends_on: ["keycloak"]
